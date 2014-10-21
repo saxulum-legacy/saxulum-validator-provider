@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Saxulum\Tests\Validator\Fixtures">
+        <property name="value">
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="max">10</option>
+                <option name="minMessage">min</option>
+                <option name="maxMessage">max</option>
+                <option name="invalidMessage">invalid</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

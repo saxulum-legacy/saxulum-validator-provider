@@ -1,0 +1,9 @@
+Saxulum\Tests\Validator\Fixtures:
+  properties:
+    value:
+      - Range:
+          min: 0
+          max: 10
+          minMessage: min
+          maxMessage: max
+          invalidMessage: invalid
