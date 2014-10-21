@@ -20,8 +20,13 @@
 
 * doctrine/annotations ~1.0
 
+#### Xml
+
+* symfony/config >=2.3
+
 #### Yaml
 
+* symfony/config >=2.3
 * symfony/yaml >=2.3
 
 
@@ -31,10 +36,10 @@ Through [Composer](http://getcomposer.org) as [saxulum/saxulum-validator-provide
 
 ``` {.php}
 use Silex\Provider\ValidatorServiceProvider;
-use Saxulum\Validator\Silex\Provider\ValidatorProvider;
+use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
 
 $app->register(new ValidatorServiceProvider());
-$app->register(new ValidatorProvider());
+$app->register(new SaxulumValidatorProvider());
 ```
 
 #### Annotation

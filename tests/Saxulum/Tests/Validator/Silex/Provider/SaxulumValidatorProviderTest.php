@@ -5,12 +5,12 @@ namespace Saxulum\Tests\Validator\Silex\Provider;
 use Saxulum\Tests\Validator\Fixtures\AnnotationObject;
 use Saxulum\Tests\Validator\Fixtures\DefaultObject;
 use Saxulum\Tests\Validator\Fixtures\StaticMethodObject;
-use Saxulum\Validator\Silex\Provider\ValidatorProvider;
+use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
 use Silex\Application;
 use Silex\Provider\ValidatorServiceProvider;
 use Symfony\Component\Validator\Validator;
 
-class ValidatorProviderTest extends \PHPUnit_Framework_TestCase
+class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function testAnnotation()
     {
@@ -146,7 +146,7 @@ class ValidatorProviderTest extends \PHPUnit_Framework_TestCase
         $app['debug'] = true;
 
         $app->register(new ValidatorServiceProvider());
-        $app->register(new ValidatorProvider());
+        $app->register(new SaxulumValidatorProvider());
 
         return $app;
     }

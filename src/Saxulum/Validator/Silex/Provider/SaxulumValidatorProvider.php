@@ -2,18 +2,18 @@
 
 namespace Saxulum\Validator\Silex\Provider;
 
-use Saxulum\Validator\Provider\ValidatorProvider as BaseValidatorProvider;
+use Saxulum\Validator\Provider\SaxulumValidatorProvider as BaseSaxulumValidatorProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
-class ValidatorProvider implements ServiceProviderInterface
+class SaxulumValidatorProvider implements ServiceProviderInterface
 {
     /**
      * @param Application $app
      */
     public function register(Application $app)
     {
-        $validatorProvider = new BaseValidatorProvider();
+        $validatorProvider = new BaseSaxulumValidatorProvider();
         $validatorProvider->register($app);
     }
 

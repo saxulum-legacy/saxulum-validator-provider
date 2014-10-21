@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader;
 use Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader;
 use Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader;
 
-class ValidatorProvider
+class SaxulumValidatorProvider
 {
     public function register(\Pimple $container)
     {
