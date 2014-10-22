@@ -23,7 +23,11 @@ class SaxulumValidatorProvider
         });
 
         $container['validator.loader.annotation'] = $container->share(function () {
-            return new AnnotationLoader(new AnnotationReader());
+            if(class_exists('Doctrine\Common\Annotations\AnnotationReader')) {
+                return new AnnotationLoader(new AnnotationReader());
+            }
+
+            return null;
         });
 
         $container['validator.loader.staticmethod'] = $container->share(function () {
