@@ -36,10 +36,10 @@ Through [Composer](http://getcomposer.org) as [saxulum/saxulum-validator-provide
 
 ``` {.php}
 use Silex\Provider\ValidatorServiceProvider;
-use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
+use Saxulum\Validator\Provider\SaxulumValidatorProvider;
 
-$app->register(new ValidatorServiceProvider());
-$app->register(new SaxulumValidatorProvider());
+$container->register(new ValidatorServiceProvider());
+$container->register(new SaxulumValidatorProvider());
 ```
 
 #### Annotation
@@ -53,12 +53,10 @@ $app->register(new SaxulumValidatorProvider());
 Register xml files.
 
 ``` {.php}
-$app['validator.loader.xml.files'] = $app->share(
-    $app->extend('validator.loader.xml.files', function ($files) {
-        $files[] = __DIR__ . '/../../Fixtures/test.xml';
-        return $files;
-    })
-);
+$container['validator.loader.xml.files'] = $container->extend('validator.loader.xml.files', function ($files) {
+    $files[] = __DIR__ . '/../../Fixtures/test.xml';
+    return $files;
+});
 ```
 
 #### YAML
@@ -66,18 +64,16 @@ $app['validator.loader.xml.files'] = $app->share(
 Register yml files.
 
 ``` {.php}
-$app['validator.loader.yaml.files'] = $app->share(
-    $app->extend('validator.loader.yaml.files', function ($files) {
-        $files[] = __DIR__ . '/../../Fixtures/test.yaml';
-        return $files;
-    })
-);
+$container['validator.loader.yaml.files'] = $container->extend('validator.loader.yaml.files', function ($files) {
+    $files[] = __DIR__ . '/../../Fixtures/test.yaml';
+    return $files;
+});
 ```
 
 ### Usage
 
 ``` {.php}
-$app['validator']->validate($object);
+$container['validator']->validate($object);
 ```
 
 [1]: https://packagist.org/packages/saxulum/saxulum-validator-provider
