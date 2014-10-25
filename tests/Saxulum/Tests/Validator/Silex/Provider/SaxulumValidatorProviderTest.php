@@ -2,11 +2,11 @@
 
 namespace Saxulum\Tests\Validator\Silex\Provider;
 
+use Pimple\Container;
 use Saxulum\Tests\Validator\Fixtures\AnnotationObject;
 use Saxulum\Tests\Validator\Fixtures\DefaultObject;
 use Saxulum\Tests\Validator\Fixtures\StaticMethodObject;
-use Saxulum\Validator\Silex\Provider\SaxulumValidatorProvider;
-use Silex\Application;
+use Saxulum\Validator\Provider\SaxulumValidatorProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Symfony\Component\Validator\Validator;
 
@@ -14,10 +14,10 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function testAnnotation()
     {
-        $app = $this->getApp();
+        $container = $this->getContainer();
 
         /** @var Validator $validator */
-        $validator = $app['validator'];
+        $validator = $container['validator'];
 
         $annotationObject = new AnnotationObject();
         $annotationObject->setValue(1);
@@ -42,10 +42,10 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testStaticMethod()
     {
-        $app = $this->getApp();
+        $container = $this->getContainer();
 
         /** @var Validator $validator */
-        $validator = $app['validator'];
+        $validator = $container['validator'];
 
         $staticMethodObject = new StaticMethodObject();
         $staticMethodObject->setValue(1);
@@ -70,18 +70,16 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testXml()
     {
-        $app = $this->getApp();
+        $container = $this->getContainer();
 
-        $app['validator.loader.xml.files'] = $app->share(
-            $app->extend('validator.loader.xml.files', function ($files) {
-                $files[] = __DIR__ . '/../../Fixtures/test.xml';
+        $container['validator.loader.xml.files'] = $container->extend('validator.loader.xml.files', function ($files) {
+            $files[] = __DIR__ . '/../../Fixtures/test.xml';
 
-                return $files;
-            })
-        );
+            return $files;
+        });
 
         /** @var Validator $validator */
-        $validator = $app['validator'];
+        $validator = $container['validator'];
 
         $staticMethodObject = new DefaultObject();
         $staticMethodObject->setValue(1);
@@ -106,18 +104,16 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testYaml()
     {
-        $app = $this->getApp();
+        $container = $this->getContainer();
 
-        $app['validator.loader.yaml.files'] = $app->share(
-            $app->extend('validator.loader.yaml.files', function ($files) {
-                $files[] = __DIR__ . '/../../Fixtures/test.yml';
+        $container['validator.loader.yaml.files'] = $container->extend('validator.loader.yaml.files', function ($files) {
+            $files[] = __DIR__ . '/../../Fixtures/test.yml';
 
-                return $files;
-            })
-        );
+            return $files;
+        });
 
         /** @var Validator $validator */
-        $validator = $app['validator'];
+        $validator = $container['validator'];
 
         $staticMethodObject = new DefaultObject();
         $staticMethodObject->setValue(1);
@@ -140,14 +136,14 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('max', $violations[0]->getMessage());
     }
 
-    protected function getApp()
+    protected function getContainer()
     {
-        $app = new Application();
-        $app['debug'] = true;
+        $container = new Container();
+        $container['debug'] = true;
 
-        $app->register(new ValidatorServiceProvider());
-        $app->register(new SaxulumValidatorProvider());
+        $container->register(new ValidatorServiceProvider());
+        $container->register(new SaxulumValidatorProvider());
 
-        return $app;
+        return $container;
     }
 }
