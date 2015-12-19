@@ -1,6 +1,6 @@
 <?php
 
-namespace Saxulum\Tests\Validator\Silex\Provider;
+namespace Saxulum\Tests\Validator\Provider;
 
 use Pimple\Container;
 use Saxulum\Tests\Validator\Fixtures\AnnotationObject;
@@ -73,7 +73,7 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer();
 
         $container['validator.loader.xml.files'] = $container->extend('validator.loader.xml.files', function ($files) {
-            $files[] = __DIR__ . '/../../Fixtures/test.xml';
+            $files[] = __DIR__ . '/../Fixtures/test.xml';
 
             return $files;
         });
@@ -107,7 +107,7 @@ class SaxulumValidatorProviderTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer();
 
         $container['validator.loader.yaml.files'] = $container->extend('validator.loader.yaml.files', function ($files) {
-            $files[] = __DIR__ . '/../../Fixtures/test.yml';
+            $files[] = __DIR__ . '/../Fixtures/test.yml';
 
             return $files;
         });
