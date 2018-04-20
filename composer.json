@@ -24,5 +24,6 @@
     },
     "autoload": {
         "psr-4": { "Saxulum\\Validator\\": "src/" }
-    }
+    },
+    "abandoned": true
 }
